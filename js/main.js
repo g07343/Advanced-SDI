@@ -6,7 +6,7 @@ main.js file
 
 $('#home').on('pageinit', function(){
 
-console.log("test!!!");
+
 });
 
 $('#add').on('pageinit', function(){
