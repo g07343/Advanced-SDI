@@ -119,7 +119,7 @@ index.html file
 							 	<fieldset data-role="controlgroup">
 									<legend>Save game to cloud?</legend>
 									<input type="checkbox" name="cloud" id="cloud" />
-									<label for="checkbox-1"></label>
+									<label for="cloud"></label>
 							    </fieldset>
 							</div>
 							<!-- submit and cancel buttons -->
@@ -160,6 +160,42 @@ index.html file
 								<li><a href="#settings">Settings</a></li>
 							</ul>
 
+						</div>
+					</div>
+				</footer>
+			</section>	
+		</div>
+		<div data-role="page" id="settings">
+			<section id="settings">
+				<header data-role="header"><h1>Settings:</h1></header>
+				<section data-role="content">
+					<section>
+						<div data-role="fieldcontain">
+							<label for="slider">Allow cloud back up of game list?</label>
+							<select name="slider" id="slider" data-role="slider">
+								<option value="off">Off</option>
+								<option value="on">On</option>
+							</select>
+						</div>
+						<div data-role="fieldcontain">
+								<fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
+							    	<label for="console">Application Theme:</label>
+							            <select class="required" data-native-menu="false">
+							                <option value="Light">Light</option>
+							                <option value="Dark">Dark</option>
+							            </select>
+						        </fieldset>
+					   	 	</div>
+					</section>
+				</section>
+				<footer>
+					<div data-role="footer" data-position="fixed" data-id="static">
+						<div data-role="navbar">
+							<ul>
+								<li><a href="#home">Home</a></li>
+								<li><a href="#add">Add Game</a></li>
+								<li><a href="#settings">Settings</a></li>
+							</ul>
 						</div>
 					</div>
 				</footer>
