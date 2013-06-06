@@ -10,13 +10,64 @@ index.html file
 
 	<head>
 		<title></title>
-		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="jquery.mobile-1.3.1.min.css">
 	</head>
 	
 	<body>
 	
+		<div id="main">
+			<section data-role="page" id="main">
+				<header data-role="header"><h1>Game Tracker</h1></header>
+				<section data-role="content">
+					<section>
+						<h2>Need to keep track of your games?</h2>
+						<a href="#">Add a Game!</a>
+					</section>
+
+
+					<section>
+						<ul data-role="listview" data-inset="true" data-filter="true">
+						<li data-role="list-divider" class="browseTitle">Browse your Characters By:</li>
+						<li class="browseCat">
+							<a href="#charpage">Name</a>
+						</li>
+						<li class="browseCat">
+							<a href="#charpage">Gender</a>
+						</li>
+						<li class="browseCat">
+							<a href="#charpage">Role</a>
+						</li>
+						<li class="browseCat">
+							<a href="#charpage">Nationality</a>
+						</li>
+						<li class="browseCat">
+							<a href="#charpage">Level</a>
+						</li>
+					</ul>
+					</section>
+				</section>
+
+				<footer data-role="footer" data-position="fixed" data-id="static">
+					<div data-role="navbar">
+						<ul>
+							<li>Home</li>
+							<li>Add Game</li>
+							<li>Settings</li>
+						</ul>
+
+					</div>
+				</footer>
+
+
+
+
+			</section>	
+		</div>
 	
-		<script src="main.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/jquery.mobile-1.3.1.min.js"></script>
 	</body>
 
 </html>
