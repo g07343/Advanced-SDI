@@ -4,9 +4,9 @@ ASDI Term 1306
 main.js file
 */
 
-$('#main').on('pageinit', function(){
+$('#home').on('pageinit', function(){
 
-
+console.log("test!!!");
 });
 
 $('#add').on('pageinit', function(){
