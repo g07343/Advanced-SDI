@@ -30,16 +30,16 @@ index.html file
 						<ul data-role="listview" data-inset="true" data-filter="true">
 							<li data-role="list-divider" class="browseTitle">Browse your Games By:</li>
 							<li>
-								<a href="#display">Genre</a>
+								<a href="#display" class="display">Genre</a>
 							</li>
 							<li>
-								<a href="#display">Platform</a>
+								<a href="#display" class="display">Platform</a>
 							</li>
 							<li>
-								<a href="#display">Alphabetical</a>
+								<a href="#display" class="display">Alphabetical</a>
 							</li>
 							<li>
-								<a href="#display">Favorites</a>
+								<a href="#display" class="display">Favorites</a>
 							</li>
 						</ul>
 					</section>
@@ -61,9 +61,8 @@ index.html file
 		<div  data-role="page" id="add">
 			<section id="add">
 				<header data-role="header"><h1>Add a New Game</h1></header>
-				<section data-role="content">
+				<div data-role="content">
 					<form action="" method="post" id="addGame">
-						<section>
 							<!-- All form inputs live below! -->
 							<!-- Name input -->
 							<div data-role="fieldcontain">
@@ -74,7 +73,7 @@ index.html file
 							<div data-role="fieldcontain">
 								<fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
 							    	<label for="console">Console/Device:</label>
-							            <select class="required" data-native-menu="false">
+							            <select class="required" id="console" name="console" data-native-menu="false">
 							                <option data-placeholder="true" value>Where console is the game on?</option>
 							                <option value="XBOX">Xbox 360</option>
 							                <option value="PS3">PS3</option>
@@ -88,7 +87,7 @@ index.html file
 					        <div data-role="fieldcontain">
 						        <fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
 							    	<label for="genre">Genre:</label>
-							            <select class="required" data-native-menu="false">
+							            <select class="required" id="genre" name="genre" data-native-menu="false">
 							                <option data-placeholder="true" value>What genre is the game?</option>
 							                <option value="Action">Action</option>
 							                <option value="Adventure">Adventure</option>
@@ -103,7 +102,7 @@ index.html file
 					    	</div>
 					    	<!-- description input -->
 					        <div data-role="fieldcontain">
-						        <label for="description">Brief description of game:</label>
+						        <label for="bio">Brief description of game:</label>
 								<textarea name="bio" id="bio" placeholder="Write a brief description of the game"></textarea>
 							</div>
 							<!-- favorite input -->
@@ -111,7 +110,7 @@ index.html file
 							 	<fieldset data-role="controlgroup">
 									<legend>Is this game a favorite?</legend>
 									<input type="checkbox" name="favorite" id="favorite" />
-									<label for="checkbox-1"></label>
+									<label for="favorite"></label>
 							    </fieldset>
 							</div>
 							<!-- cloud input -->
@@ -124,12 +123,16 @@ index.html file
 							</div>
 							<!-- submit and cancel buttons -->
 							<div data-role="fieldcontain">
-								<input type="submit" value="Add Game!" data-theme="b" id="Submit" data-inline="true"/>
+								<input type="submit" value="Add Game!" data-theme="b" id="submitGame" data-inline="true"/>
 								<a id="cancel" href="#home" data-inline="true">Cancel</a>
+								<a id="clearStorage">Clear!</a>
+								<a id="reload" href="#"></a>
 							</div>
-						</section>
+							<div id="hidden">
+								<input type="reset" value="Reset" data-theme="a" style="display: none" id="reset"/>
+							</div>
 					</form>
-				</section>
+				</div>
 				<footer>
 					<div data-role="footer" data-position="fixed" data-id="static">
 						<div data-role="navbar">
@@ -148,7 +151,8 @@ index.html file
 				<header data-role="header"><h1>Your Games:</h1></header>
 				<section data-role="content">
 					<section>
-						<p>temporary placeholder (dynamic content coming soon!)</p>
+						<ul>
+						</ul>
 					</section>
 				</section>
 				<footer>
@@ -171,11 +175,7 @@ index.html file
 				<section data-role="content">
 					<section>
 						<div data-role="fieldcontain">
-							<label for="slider">Allow cloud back up of game list?</label>
-							<select name="slider" id="slider" data-role="slider">
-								<option value="off">Off</option>
-								<option value="on">On</option>
-							</select>
+							<a href="#" id="resetGames" data-role="button">Restore default saved games?</a>
 						</div>
 						<div data-role="fieldcontain">
 								<fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
