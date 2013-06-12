@@ -27,7 +27,7 @@ $('#add').on('pageinit', function(){
 			}else{
 				id = key;
 			}
-
+		console.log(key);
 		var game      = {};
 	
 		game.name        = $("#name").val();
@@ -123,7 +123,8 @@ function createItemLinks(key, createLinks){
 			var edit = document.createElement('a');
 			edit.href = "#";
 			edit.key = key;
-			var txt = "Edit Member ";
+			edit.setAttribute('data-key', key);
+			var txt = "Edit Game";
 			edit.innerHTML = txt;
 			edit.addEventListener('click', editGame);
 			createLinks.appendChild(edit);
@@ -132,7 +133,7 @@ function createItemLinks(key, createLinks){
 			var del = document.createElement('a');
 			del.href = '#';
 			del.key = key;
-			var delTxt = " Delete Member";
+			var delTxt = " Delete Game";
 			del.innerHTML = delTxt;
 			del.addEventListener('click', deleteGame);
 			createLinks.appendChild(del);
@@ -140,20 +141,26 @@ function createItemLinks(key, createLinks){
 
 function editGame() {
 	//alert("edit button clicked!");
-	$('#addLink').click();
+	
+	console.log(this.key);
 	var getKey = localStorage.getItem(this.key);
 			var edit = JSON.parse(getKey);
 			$("#name").val(edit.name[1]);
-			$("#console").html("<option>" + edit.console[1] + "</option>");
+			$("#consolePlaceholder").html(edit.console[1]);
+		
 			$("#genrePlaceholder").html(edit.genre[1]);
+			//console.log($("#genre").html());
 			$("#bio").val(edit.bio[1]);
 			
+			$('#addLink').click();
+
 
 };
 function deleteGame() {
 	alert("delete button clicked!");
 
 };
+
 
 
 

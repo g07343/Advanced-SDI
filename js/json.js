@@ -14,7 +14,7 @@ var json = {
 	},
 	"1234556": {
 		"name": ["Name: ", "Luigi's Mansion: Dark Moon"],
-		"console": ["Console: ", "3DS"],
+		"console": ["Console: ", "Nintendo 3DS"],
 		"genre": ["Genre: ", "Adventure"],
 		"bio": ["Bio: ", "Followup title to the Gamecube original, Luigi's Mansion."],
 		"favorite": ["Favorite: ", "Yes"],
@@ -32,7 +32,7 @@ var json = {
 	},
 	"63473": {
 		"name": ["Name: ", "Halo 4"],
-		"console": ["Console: ", "XBOX"],
+		"console": ["Console: ", "Xbox 360"],
 		"genre": ["Genre: ", "Action"],
 		"bio": ["Bio: ", "Another Halo game."],
 		"favorite": ["Favorite: ", "No"],
