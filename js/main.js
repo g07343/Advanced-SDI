@@ -12,71 +12,77 @@ $('#home').on('pageinit', function(){
 $('#add').on('pageinit', function(){
 	
 	
-
-	var myForm = $('#addGame');
-	console.log(myForm);
-
-	myForm.submit(function(key){
-		if ($('#cloud').val() == 'on') {
-			console.log("user choose to save to cloud!");
-			//additional code to save to xml later goes here!
-
-		};
-		if(!key){
-				var id = Math.floor(Math.random()*100065);
-			}else{
-				id = key;
-			}
-		console.log(key);
-		var game      = {};
 	
-		game.name        = $("#name").val();
-		game.console     = $("#console").val();
-		game.genre       = $("#genre").val();
-		game.bio         = $("#bio").val();
-		game.favorite    = $("#favorite").val();
-		game.cloud       = $("#cloud").val();
+		$("#saveGame").on('click', function(key){
+			getFavorite();
+			getCloud();
+			if(!key){
+				var id = Math.floor(Math.random()*100065);
+				console.log(id);
+			}else{
+				id = Math.floor(Math.random()*100065);
+				console.log(key);
+			getFavorite();
+			getCloud();
 
-		console.log(game);
-		//autofillData();
-		
-		localStorage.setItem(id, JSON.stringify(game));
-		$("#reset").click();
-	});
+			var game            = {};
+				game.name       =["Name: ",    $("#name").val()];
+				game.console    =["Console: ",    $("#console").val()];
+				game.genre      =["Genre: ",     $("#genre").val()];
+				game.bio        =["Bio: ",    $("#bio").val()];
+				game.favorite   =["Favorite? ",   favVal];
+				game.cloud      =["Cloud: ",   cloudVal];
+				
+					key = id;
+					
+					
+					localStorage.setItem(id, JSON.stringify(game));
 
+					alert("Game Saved!");
+					//$('#addGame').reset();
+					window.location.reload();
+				}
+				function getFavorite(){
+					if ($('#favorite').is(':checked')){
+						favVal = "yes";
+						
+					} else {
+						favVal = "no";
+						
+					}
+					console.log("favVal is " + favVal);
+					return favVal;
+				};
+				function getCloud(){
+					console.log("Cloud is" + $('#cloud').val());
+					if($('#cloud').is(':checked')){
+						cloudVal = "on";
+
+					} else {
+						cloudVal = "off";
+					}
+					return cloudVal;
+				}
+
+
+		});
+
+		$('#clearStorage').on("click", function(){
+			localStorage.clear();
+			window.location.reload();
+		});
 });
 
-$('#clearStorage').on('click', function(){
-	localStorage.clear();
-})
+
+
 
 
 $('#display').on('pageinit', function(){
 	
-
-});
-var display = $('.display');
-var reset = $('#resetGames');
-
-
-$(reset).on("click", function(){
-	confirm("This action cannot be undone!  All saved games will be lost!")
-
-});
-
-$(display).on('click', function(){
-	if (localStorage.length == "0") {
-		alert("You haven't saved any games yet!  Default games will be generated for you.")
-		for(var n in json){
-				var id = Math.floor(Math.random()*100065);
-				localStorage.setItem(id, JSON.stringify(json[n]));
-		};
-
-		var createDiv = document.createElement('div');
+	var createDiv = document.createElement('div');
 				createDiv.setAttribute("id", "items");
-				//var colorDiv = get("items");
 				//createDiv.appendChild(createList);
-				$('#display').append(createDiv);
+				$('#viewGames').append(createDiv);
 				for (var i=0, len=localStorage.length; i<len; i++) {
 					var createLi = document.createElement('li');
 					var createField = document.createElement('fieldset');
@@ -98,73 +104,42 @@ $(display).on('click', function(){
 						createSubLi.innerHTML = optSubText; 
 						createSubList.appendChild(createLinks);
 					}
-				createItemLinks(localStorage.key(i), createLinks);
+					createItemLinks(localStorage.key(i), createLinks);
 				}
 
-	} else {
-	var option = $(this).text();
-	console.log(option);
-	displayGames(option);
-	};
+			function createItemLinks(key, createLinks){
+				var edit = document.createElement('a');
+				edit.href = "#";
+				edit.key = key;
+				var txt = "Edit Game ";
+				edit.innerHTML = txt;
+				//edit.addEventListener('click', editGame());
+				createLinks.appendChild(edit);
+				edit.style.display="block";
+				
+				var del = document.createElement('a');
+				del.href = '#';
+				del.key = key;
+				var delTxt = " Delete Game";
+				del.innerHTML = delTxt;
+				//del.addEventListener('click', deleteGame());
+				createLinks.appendChild(del);
+			};
 });
 
-function displayGames(option) {
-//if option passed is genre
-
-//if option passed is platform
-
-//if option passed is alphabetical
-
-//if option passed is a favorite
-
-};
-	
-function createItemLinks(key, createLinks){
-			var edit = document.createElement('a');
-			edit.href = "#";
-			edit.key = key;
-			edit.setAttribute('data-key', key);
-			var txt = "Edit Game";
-			edit.innerHTML = txt;
-			edit.addEventListener('click', editGame);
-			createLinks.appendChild(edit);
-			edit.style.display="block";
-			
-			var del = document.createElement('a');
-			del.href = '#';
-			del.key = key;
-			var delTxt = " Delete Game";
-			del.innerHTML = delTxt;
-			del.addEventListener('click', deleteGame);
-			createLinks.appendChild(del);
-		};
-
-function editGame() {
-	//alert("edit button clicked!");
-	
-	console.log(this.key);
-	var getKey = localStorage.getItem(this.key);
-			var edit = JSON.parse(getKey);
-			$("#name").val(edit.name[1]);
-			$("#consolePlaceholder").html(edit.console[1]);
 		
-			$("#genrePlaceholder").html(edit.genre[1]);
-			//console.log($("#genre").html());
-			$("#bio").val(edit.bio[1]);
-			
-			$('#addLink').click();
-
-
-};
-function deleteGame() {
-	alert("delete button clicked!");
-
-};
 
 
 
+$('#settings').on('pageinit', function(){
+	
+});
 
+$('#edit').on('pageinit', function(){
+	
+});
 
-
-
-
+///adding outside listeners, variables, etc down below...
+//$('saveGame').on('click', addGame());
+var cloudVal;
+var favVal;
