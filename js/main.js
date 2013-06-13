@@ -105,13 +105,14 @@ $('#display').on('pageinit', function(){
 						var optSubText = obj[n][0]+" "+obj[n][1];
 						createSubLi.innerHTML = optSubText; 
 						createSubList.appendChild(createLinks);
+
 					}
 					createItemLinks(localStorage.key(i), createLinks);
 				}
 
 			function createItemLinks(key, createLinks){
 				var editor = document.createElement('a');
-				editor.href = "#edit";
+				$(editor).attr("href", "#edit");
 				editor.key = key;
 				$(editor).attr("class", "editLink");
 				var txt = "Edit Game";
@@ -121,22 +122,19 @@ $('#display').on('pageinit', function(){
 				editor.style.display="block";
 				
 				var del = document.createElement('a');
-				del.href = '#';
+				$(del).attr("href", "#display");
 				del.key = key;
-				//del.class = "deleteLink";
 				$(del).attr("class", "deleteLink");
 				console.log(key);
-				var delTxt = " Delete Game";
+				var delTxt = "Delete Game";
 				del.innerHTML = delTxt;
-				$(del).on('click', deleteGame(key));
+				//$(del).on('click', deleteGame(key));
 				createLinks.appendChild(del);
+
 			};
 			
-			function deleteGame(key){
-				var delGame = $(".deleteLink");
-				console.log("deleteGame is run!")
-				delGame.on('click', function(){
-					console.log("delete was clicked!");
+			$('.deleteLink').on('click', function(){
+				
 					var promptUser = confirm("Are you sure you want to delete this game?");
 						if(promptUser){
 							
@@ -149,7 +147,7 @@ $('#display').on('pageinit', function(){
 				});
 
 				
-			};
+			
 
 			function editGame(key){
 				var getKey = localStorage.getItem(key);
@@ -254,7 +252,20 @@ $('#display').on('pageinit', function(){
 
 
 $('#settings').on('pageinit', function(){
-	
+	$('#restore').on('click', function(){
+		var resetAll =	confirm("This will delete all currently stored games and restore the default games.  This cannot be undone!")
+		if (resetAll) {
+			console.log('All games were deleted!')
+			localStorage.clear();
+			location.reload(true);
+
+		};
+
+
+
+
+
+	});
 });
 
 $('#edit').on('pageinit', function(){
