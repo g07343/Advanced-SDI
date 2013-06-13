@@ -113,22 +113,44 @@ $('#display').on('pageinit', function(){
 				var editor = document.createElement('a');
 				editor.href = "#edit";
 				editor.key = key;
-				editor.class = "editLink";
+				$(editor).attr("class", "editLink");
 				var txt = "Edit Game";
 				editor.innerHTML = txt;
-				editor.addEventListener('click', editGame(key));
+				$(editor).on('click', editGame(key));
 				createLinks.appendChild(editor);
 				editor.style.display="block";
 				
 				var del = document.createElement('a');
 				del.href = '#';
 				del.key = key;
+				//del.class = "deleteLink";
+				$(del).attr("class", "deleteLink");
 				console.log(key);
 				var delTxt = " Delete Game";
 				del.innerHTML = delTxt;
-				//del.addEventListener('click', deleteGame());
+				$(del).on('click', deleteGame(key));
 				createLinks.appendChild(del);
 			};
+			
+			function deleteGame(key){
+				var delGame = $(".deleteLink");
+				console.log("deleteGame is run!")
+				delGame.on('click', function(){
+					console.log("delete was clicked!");
+					var promptUser = confirm("Are you sure you want to delete this game?");
+						if(promptUser){
+							
+							localStorage.removeItem(this.key);
+							alert("Game deleted!");
+							window.location.reload();
+							}else{
+								alert("Game saved.");
+							}
+				});
+
+				
+			};
+
 			function editGame(key){
 				var getKey = localStorage.getItem(key);
 				var game = JSON.parse(getKey);
@@ -149,7 +171,7 @@ $('#display').on('pageinit', function(){
 				function retrieveFav(){
 					if(game.favorite[1] == "yes") {
 						//do this
-						console.log("HORRAAAY IT WAS CHECKED!");
+						console.log("HORRAAAY FAVORITE WAS CHECKED!");
 						$('#editFavorite').prop('checked', true);
 					} else {
 						return;
@@ -167,6 +189,8 @@ $('#display').on('pageinit', function(){
 
 				}
 			};
+
+
 			$('#submitEditedGame').on('click', function(){
 				console.log("Edited games key is " + key);
 				getFavorite();
@@ -201,6 +225,7 @@ $('#display').on('pageinit', function(){
 
 			});
 			
+
 			function getFavorite(){
 					if ($('#editFavorite').is(':checked')){
 						favVal = "yes";
@@ -242,6 +267,8 @@ $('#edit').on('pageinit', function(){
 		console.log('edit form reset!');
 	});
 });
+
+
 
 
 
