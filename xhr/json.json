@@ -1,0 +1,12 @@
+
+		{
+		"name": ["Name: ", "Borderlands"],
+		"console": ["Console: ", "PC"],
+		"genre": ["Genre: ", "RPG"],
+		"bio": ["Bio: ", "Awesomeness in shooter/RPG form!"],
+		"favorite": ["Favorite: ", "yes"],
+		"cloud": ["Cloud: ", "off"]
+		}
+
+		
+

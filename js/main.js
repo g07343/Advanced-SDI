@@ -252,21 +252,71 @@ $('#display').on('pageinit', function(){
 
 
 $('#settings').on('pageinit', function(){
-	$('#restore').on('click', function(){
-		var resetAll =	confirm("This will delete all currently stored games and restore the default games.  This cannot be undone!")
+	
+	$('#restoreJson').on('click', function(){
+		var resetAll =	confirm("This will delete all currently stored games and restore the default games.  This cannot be undone!");
 		if (resetAll) {
 			console.log('All games were deleted!')
 			localStorage.clear();
-			location.reload(true);
+			$.ajax({
+
+				url: "xhr/json.json",
+				type: "GET",
+				error: function(result){
+					console.log(result);
+				},
+				dataType: "json",
+				success: function(result){
+					//JSON.stringify(result);
+					//need code to loop through result.length at some point...
+					// console.log(result.bio)
+					// $.each(result, function(key, value){
+ 				// 		var game = {};
+
+ 						
+					// game.name       =["Name: ",    $(result.name).val()];
+					// game.console    =["Console: ",    result.console.value()];
+					// game.genre      =["Genre: ",     result.genre.value()];
+					// game.bio        =["Bio: ",    result.bio.value()];
+					// game.favorite   =["Favorite? ",   result.favorite.value()];
+					// game.cloud      =["Cloud: ",   result.cloud.value()];
+ 				// 		//alert(key);
+ 				// 		//alert(value);
+					// var id = Math.floor(Math.random()*1904857);
+					// localStorage.setItem(id, JSON.stringify(result))
+
+					// });
+					//the below 2 lines work to store a single item!
+					//since jquery has weird errors when trying to loop through multiple items returned, only working with one for now...
+					var id = Math.floor(Math.random()*1904857);
+					localStorage.setItem(id, JSON.stringify(result));
+				}
+			});
+
+				
 
 		};
 
+			//location.reload(true);
 
+		});
+		$('#restoreXml').on('click', function(){
+			$.ajax({
 
-
+				url: "xhr/xml.xml",
+				type: "GET",
+				error: function(result){
+					console.log(result);
+				},
+				dataType: "xml",
+				success: function(result){
+					console.log(result);
+				}
+			});
+		});
 
 	});
-});
+
 
 $('#edit').on('pageinit', function(){
 

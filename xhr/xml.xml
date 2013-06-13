@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+	<head>
+		<meta http-equiv="Content-Type" content="text/xml; charset=utf-8">
+	</head>
+		<body>
+			<game>
+				<name>Luigi's Mansion: Dark Moon</name>
+				<console>3DS</console>
+				<bio>Followup title to the GameCube original, Luigi's Mansion</bio>
+				<favorite>yes</favorite>
+				<cloud>off</cloud>
+			</game>
+		</body>
