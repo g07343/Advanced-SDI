@@ -297,10 +297,11 @@ $('#settings').on('pageinit', function(){
 
 		};
 
-			//location.reload(true);
+			location.reload(true);
 
 		});
 		$('#restoreXml').on('click', function(){
+			console.log('restoreXML was clicked');
 			$.ajax({
 
 				url: "xhr/xml.xml",
@@ -309,8 +310,17 @@ $('#settings').on('pageinit', function(){
 					console.log(result);
 				},
 				dataType: "xml",
-				success: function(result){
-					console.log(result);
+				success: function(xml){
+					console.log('success!');
+					console.log(xml);
+					var name = $(xml).find('name').text();
+    				
+					alert(name);  
+									//"book[title='Cinderella']"					
+
+  					 
+
+
 				}
 			});
 		});
