@@ -75,10 +75,6 @@ $('#add').on('pageinit', function(){
 		});
 });
 
-
-
-
-
 $('#display').on('pageinit', function(){
 	
 	var createDiv = document.createElement('div');
@@ -98,7 +94,6 @@ $('#display').on('pageinit', function(){
 					var obj = JSON.parse(value);
 					var createSubList = document.createElement('ul');
 					createLi.appendChild(createSubList);
-					//createImage(obj.origin[1], createSubList);
 					for(var n in obj) {
 						var createSubLi = document.createElement('li');
 						createSubList.appendChild(createSubLi);
@@ -290,6 +285,8 @@ $('#settings').on('pageinit', function(){
 					//since jquery has weird errors when trying to loop through multiple items returned, only working with one for now...
 					var id = Math.floor(Math.random()*1904857);
 					localStorage.setItem(id, JSON.stringify(result));
+					location.reload(true);
+
 				}
 			});
 
@@ -297,7 +294,6 @@ $('#settings').on('pageinit', function(){
 
 		};
 
-			location.reload(true);
 
 		});
 		$('#restoreXml').on('click', function(){
