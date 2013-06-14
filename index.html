@@ -1,71 +1,294 @@
-<!doctype html>
+<!DOCTYPE html>
+
+<!--
+Matthew Lewis
+ASDI Term 1306
+index.html file
+-->
+
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Advanced-sdi by g07343</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<meta charset="utf-8" />
+		<title>Game Tracker</title>
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
+	</head>
+	
+	<body>
+	
+		<div data-role="page" id="home">
+			<section id="home">
+				<header data-role="header"><h1>Game Tracker</h1></header>
+				<section data-role="content">
+					<section>
+						<h2>Need to keep track of your games?</h2>
+						<!-- <a href="#">Add a Game!</a> -->
+					</section>
+					<section>
+						<ul data-role="listview" data-inset="true" data-filter="true">
+							<li data-role="list-divider" class="browseTitle">Browse your Games By:</li>
+							<li>
+								<a href="#display" class="display">Genre</a>
+							</li>
+							<li>
+								<a href="#display" class="display">Platform</a>
+							</li>
+							<li>
+								<a href="#display" class="display">Alphabetical</a>
+							</li>
+							<li>
+								<a href="#display" class="display">Favorites</a>
+							</li>
+						</ul>
+					</section>
+				</section>
+				<footer>
+					<div data-role="footer" data-position="fixed" data-id="static">
+						<div data-role="navbar">
+							<ul>
+								<li><a href="#home">Home</a></li>
+								<li><a href="#add">Add Game</a></li>
+								<li><a href="#settings">Settings</a></li>
+							</ul>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Advanced-sdi</h1>
-        <p>Repo for Advanced Scalable Data Infrastructures course</p>
+						</div>
+					</div>
+				</footer>
+			</section>	
+		</div>
+		<div  data-role="page" id="add">
+			<section id="add">
+				<header data-role="header"><h1>Add a New Game</h1></header>
+				<div data-role="content">
+					<form action="" method="post" id="addGame">
+							<!-- All form inputs live below! -->
+							<!-- Name input -->
+							<div data-role="fieldcontain">
+								<label for="name">Game Title</label>
+								<input type="text" placeholder="Game Title/Name" name="name" id="name" class="required"/>
+							</div>
+							<!-- Game Console input -->
+							<div data-role="fieldcontain">
+								<fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
+							    	<label for="console">Console/Device:</label>
+							            <select class="required" id="console" name="console" data-native-menu="false">
+							                <option data-placeholder="true" id="consolePlaceholder"value>What console is the game on?</option>
+							                <option value="XBOX 360">Xbox 360</option>
+							                <option value="PS3">PS3</option>
+							                <option value="3DS">Nintendo 3DS</option>
+							                <option value="VITA">Playstation Vita</option>
+							                <option value="PC">PC</option>
+							            </select>
+						        </fieldset>
+					   	 	</div>
+					   	 	<!-- Genre input -->
+					        <div data-role="fieldcontain">
+						        <fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
+							    	<label for="genre">Genre:</label>
+							            <select class="required" id="genre" name="genre" data-native-menu="false">
+							                <option data-placeholder="true" id="genrePlaceholder" value>What genre is the game?</option>
+							                <option value="Action">Action</option>
+							                <option value="Adventure">Adventure</option>
+							                <option value="Strategy">Strategy</option>
+							                <option value="RPG">Role Playing Game</option>
+							                <option value="Racing">Racing</option>
+							                <option value="Horror">Horror</option>
+							                <option value="Fighting">Fighting</option>
+							                <option value="Other">Other</option>
+							            </select>
+						        </fieldset>
+					    	</div>
+					    	<!-- description input -->
+					        <div data-role="fieldcontain">
+						        <label for="bio">Brief description of game:</label>
+								<textarea name="bio" id="bio" placeholder="Write a brief description of the game"></textarea>
+							</div>
+							<!-- favorite input -->
+							<div data-role="fieldcontain">
+							 	<fieldset data-role="controlgroup">
+									<legend>Is this game a favorite?</legend>
+									<input type="checkbox" name="favorite" id="favorite" />
+									<label for="favorite"></label>
+							    </fieldset>
+							</div>
+							<!-- cloud input -->
+							<div data-role="fieldcontain">
+							 	<fieldset data-role="controlgroup">
+									<legend>Save game to cloud?</legend>
+									<input type="checkbox" name="cloud" id="cloud" />
+									<label for="cloud"></label>
+							    </fieldset>
+							</div>
+							<!-- submit and cancel buttons -->
+							<div data-role="fieldcontain">
+								<input type="submit" value="Add Game!" data-theme="b" id="saveGame" data-inline="true"/>
+								<a id="cancel" href="#home" data-inline="true">Cancel</a>
+								<a id="clearStorage">Clear!</a>
+								<a id="reload" href="#"></a>
+							</div>
+							<div id="hidden">
+								<input type="reset" value="Reset" data-theme="a" style="display: none" id="reset"/>
+							</div>
+					</form>
+				</div>
+				<footer>
+					<div data-role="footer" data-position="fixed" data-id="static">
+						<div data-role="navbar" id="nav">
+							<ul>
+								<li><a href="#home">Home</a></li>
+								<li><a href="#add" id="addLink">Add Game</a></li>
+								<li><a href="#settings">Settings</a></li>
+							</ul>
+						</div>
+					</div>
+				</footer>
+			</section>	
+		</div>
+		<div data-role="page" id="display">
+			<section>
+				<header data-role="header"><h1>Your Games:</h1></header>
+				<section data-role="content">
+					<section id="viewGames">
+					</section>
+				</section>
+				<footer>
+					<div data-role="footer" data-position="fixed" data-id="static">
+						<div data-role="navbar">
+							<ul>
+								<li><a href="#home">Home</a></li>
+								<li><a href="#add" id="addLink">Add Game</a></li>
+								<li><a href="#settings">Settings</a></li>
+							</ul>
 
-        <p class="view"><a href="https://github.com/g07343/Advanced-SDI">View the Project on GitHub <small>g07343/Advanced-SDI</small></a></p>
+						</div>
+					</div>
+				</footer>
+			</section>	
+		</div>
+		<div data-role="page" id="settings">
+			<section id="settings">
+				<header data-role="header"><h1>Settings:</h1></header>
+				<section data-role="content">
+					<section>
+						<div data-role="button" id="restoreJson">
+							Reset Games to default using JSON file default?
+						</div>
+						<div data-role="button" id="restoreXml">
+							What game is Matt currently Playing?
+						</div>
+						<div id="displayGame">
+						</div>
+						<div data-role="fieldcontain" id="settingsDiv">
+								<fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
+							    	<label for="console">Application Theme:</label>
+							            <select class="required" data-native-menu="false">
+							                <option value="Light">Light</option>
+							                <option value="Dark">Dark</option>
+							            </select>
+						        </fieldset>
+					   	 	</div>
+					</section>
+				</section>
+				<footer>
+					<div data-role="footer" data-position="fixed" data-id="static">
+						<div data-role="navbar">
+							<ul>
+								<li><a href="#home">Home</a></li>
+								<li><a href="#add">Add Game</a></li>
+								<li><a href="#settings">Settings</a></li>
+							</ul>
+						</div>
+					</div>
+				</footer>
+			</section>	
+		</div>
+		<div  data-role="page" id="edit">
+			<section>
+				<header data-role="header"><h1>Edit Game</h1></header>
+				<div data-role="content">
+					<form action="" method="post" id="editForm">
+							<!-- All form inputs live below! -->
+							<!-- Name input -->
+							<div data-role="fieldcontain">
+								<label for="editName">Game Title</label>
+								<input type="text" placeholder="Game Title/Name" name="editName" id="editName" class="required"/>
+							</div>
+							<!-- Game Console input -->
+							<div data-role="fieldcontain">
+								<fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
+							    	<label for="editConsole">Console/Device:</label>
+							            <select class="required" id="editConsole" name="console" data-native-menu="false">
+							                <option data-placeholder="true" id="consolePlaceholder"value>What console is the game on?</option>
+							                <option value="XBOX 360">Xbox 360</option>
+							                <option value="PS3">PS3</option>
+							                <option value="3DS">Nintendo 3DS</option>
+							                <option value="VITA">Playstation Vita</option>
+							                <option value="PC">PC</option>
+							            </select>
+						        </fieldset>
+					   	 	</div>
+					   	 	<!-- Genre input -->
+					        <div data-role="fieldcontain">
+						        <fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
+							    	<label for="editGenre">Genre:</label>
+							            <select class="required" id="editGenre" name="editGenre" data-native-menu="false">
+							                <option data-placeholder="true" id="genrePlaceholder" value>What genre is the game?</option>
+							                <option value="Action">Action</option>
+							                <option value="Adventure">Adventure</option>
+							                <option value="Strategy">Strategy</option>
+							                <option value="RPG">Role Playing Game</option>
+							                <option value="Racing">Racing</option>
+							                <option value="Horror">Horror</option>
+							                <option value="Fighting">Fighting</option>
+							                <option value="Other">Other</option>
+							            </select>
+						        </fieldset>
+					    	</div>
+					    	<!-- description input -->
+					        <div data-role="fieldcontain">
+						        <label for="editBio">Brief description of game:</label>
+								<textarea name="editBio" id="editBio" placeholder="Write a brief description of the game"></textarea>
+							</div>
+							<!-- favorite input -->
+							<div data-role="fieldcontain">
+							 	<fieldset data-role="controlgroup">
+									<legend>Is this game a favorite?</legend>
+									<input type="checkbox" name="editFavorite" id="editFavorite" />
+									<label for="editFavorite"></label>
+							    </fieldset>
+							</div>
+							<!-- cloud input -->
+							<div data-role="fieldcontain">
+							 	<fieldset data-role="controlgroup">
+									<legend>Save game to cloud?</legend>
+									<input type="checkbox" name="editCloud" id="editCloud" />
+									<label for="editCloud"></label>
+							    </fieldset>
+							</div>
+							<!-- submit and cancel buttons -->
+							<div data-role="fieldcontain">
+								<input type="submit" value="Update Game!" data-theme="b" id="submitEditedGame" data-inline="true"/>
+								<a id="clearStorage">Clear!</a>
+								<a id="reload" href="#"></a>
+							</div>
+							<div id="hidden">
+								<input type="reset" value="Reset" data-theme="a" style="display: none" id="resetEdit"/>
+								<a href="#home" id="editHome" tyle="display: none"></a>
+							</div>
+					</form>
+				</div>
+				<footer>
+					<div data-role="footer" data-position="fixed" data-id="static">
+					</div>
+				</footer>
+			</section>	
+		</div>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/json.js"></script>
+	</body>
 
-
-        <ul>
-          <li><a href="https://github.com/g07343/Advanced-SDI/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/g07343/Advanced-SDI/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/g07343/Advanced-SDI">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/g07343">g07343</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
 </html>
