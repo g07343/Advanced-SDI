@@ -1,12 +1,44 @@
+{
+	"game1":	{
+			"name": ["Name: ", "Borderlands"],
+			"console": ["Console: ", "PC"],
+			"genre": ["Genre: ", "RPG"],
+			"bio": ["Bio: ", "Awesomeness in shooter and RPG form"],
+			"favorite": ["Favorite: ", "yes"],
+			"cloud": ["Cloud: ", "off"]
+			},
+	"game2":	{
+			"name": ["Name: ", "The Last of Us"],
+			"console": ["Console: ", "PS3"],
+			"genre": ["Genre: ", "Action"],
+			"bio": ["Bio: ", "Uncharted bio"],
+			"favorite": ["Favorite: ", "yes"],
+			"cloud": ["Cloud: ", "off"]
+			},
+	"game3":	{
+			"name": ["Name: ", "Luigi's Mansion: Dark Moon"],
+			"console": ["Console: ", "3DS"],
+			"genre": ["Genre: ", "Adventure"],
+			"bio": ["Bio: ", "Followup title to the Gamecube original, Luigi's Mansion."],
+			"favorite": ["Favorite: ", "yes"],
+			"cloud": ["Cloud: ", "off"]
+			},
+	"game4":	{
+			"name": ["Name: ", "God of War: Ascention"],
+			"console": ["Console: ", "PS3"],
+			"genre": ["Genre: ", "Action"],
+			"bio": ["Bio: ", "God of War bio"],
+			"favorite": ["Favorite: ", "yes"],
+			"cloud": ["Cloud: ", "on"]
+			},
+	"game5":	{
+			"name": ["Name: ", "Kingdom Hearts 2"],
+			"console": ["Console: ", "PS3"],
+			"genre": ["Genre: ", "RPG"],
+			"bio": ["Bio: ", "Kingdom Hearts bio"],
+			"favorite": ["Favorite: ", "yes"],
+			"cloud": ["Cloud: ", "on"]
+			}
 
-		{
-		"name": ["Name: ", "Borderlands"],
-		"console": ["Console: ", "PC"],
-		"genre": ["Genre: ", "RPG"],
-		"bio": ["Bio: ", "Awesomeness in shooter/RPG form!"],
-		"favorite": ["Favorite: ", "yes"],
-		"cloud": ["Cloud: ", "off"]
-		}
-
-		
+}		
 
