@@ -106,13 +106,14 @@ $('#display').on('pageinit', function(){
 				}
 
 			function createItemLinks(key, createLinks){
+				console.log(key);
 				var editor = document.createElement('a');
 				$(editor).attr("href", "#edit");
 				editor.key = key;
+				$(editor).attr("data-key", key);
 				$(editor).attr("class", "editLink");
 				var txt = "Edit Game";
 				editor.innerHTML = txt;
-				$(editor).on('click', editGame(key));
 				createLinks.appendChild(editor);
 				editor.style.display="block";
 				
@@ -120,12 +121,11 @@ $('#display').on('pageinit', function(){
 				$(del).attr("href", "#display");
 				del.key = key;
 				$(del).attr("class", "deleteLink");
-				console.log(key);
 				var delTxt = "Delete Game";
 				del.innerHTML = delTxt;
 				//$(del).on('click', deleteGame(key));
 				createLinks.appendChild(del);
-
+				
 			};
 			
 			$('.deleteLink').on('click', function(){
@@ -141,7 +141,11 @@ $('#display').on('pageinit', function(){
 							}
 				});
 
-				
+			$('.editLink').on('click', function(){	
+				console.log("The game to be edited's key is: " + this.key);
+				editGame(this.key);
+
+			});
 			
 
 			function editGame(key){
@@ -164,7 +168,7 @@ $('#display').on('pageinit', function(){
 				function retrieveFav(){
 					if(game.favorite[1] == "yes") {
 						//do this
-						console.log("HORRAAAY FAVORITE WAS CHECKED!");
+						//console.log("FAVORITE WAS CHECKED!");
 						$('#editFavorite').prop('checked', true);
 					} else {
 						return;
@@ -174,20 +178,18 @@ $('#display').on('pageinit', function(){
 				function retrieveCloud(){
 					if(game.cloud[1] == "on") {
 						//do this
-						console.log("HORRAAAY CLOUD WAS CHECKED!");
+						//console.log("CLOUD WAS CHECKED!");
 						$('#editCloud').prop('checked', true);
 					} else {
 						return;
 					};
 
 				}
-			};
-
-
-			$('#submitEditedGame').on('click', function(){
+				$('#submitEditedGame').on('click', function(){
 				console.log("Edited games key is " + key);
 				getFavorite();
 				getCloud();
+				console.log("The edited game's key is: " + key);
 				if(!key){
 					var id = Math.floor(Math.random()*100065);
 					console.log(id);
@@ -217,6 +219,12 @@ $('#display').on('pageinit', function(){
 				};
 
 			});
+
+
+
+			};
+
+			
 			
 
 			function getFavorite(){

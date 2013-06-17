@@ -10,8 +10,8 @@
 	"game2":	{
 			"name": ["Name: ", "The Last of Us"],
 			"console": ["Console: ", "PS3"],
-			"genre": ["Genre: ", "Action"],
-			"bio": ["Bio: ", "Uncharted bio"],
+			"genre": ["Genre: ", "Horror"],
+			"bio": ["Bio: ", "The Last of Us bio"],
 			"favorite": ["Favorite: ", "yes"],
 			"cloud": ["Cloud: ", "off"]
 			},
