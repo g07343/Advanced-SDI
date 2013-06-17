@@ -267,7 +267,7 @@ $('#settings').on('pageinit', function(){
 						key = id;
 						var id = Math.floor(Math.random()*1904857);
 						localStorage.setItem(id, JSON.stringify(this));
-						
+
 					//console.log(game);
 					// key = id;
 					// var id = Math.floor(Math.random()*1904857);
@@ -290,21 +290,35 @@ $('#settings').on('pageinit', function(){
 				},
 				dataType: "xml",
 				success: function(xml){
-					console.log('success!');
 					console.log(xml);
-					var name = $(xml).find('name').text();
-    				
-					alert(name);  
-									//"book[title='Cinderella']"					
+					var titleHolder = [];
+					
+					getGames(xml);
 
+					function getGames(xml) {
+						var games = $(xml).find('name').each(function(){
+							//var titleHolder = [];
+							var titles = $(this).contents().eq(0).text();
+							console.log(titles);
+							titleHolder.push(titles);
+						});
+						alert("Matt is currently playing: " + titleHolder[0] + ", " + titleHolder[1] + ", " + titleHolder[2] + ", " + titleHolder[3] + ", " + "and " + titleHolder[4] + "!");		
+					};
+
+				}
+
+			});
+					
+										
+				
   					 
 
 
-				}
+				
 			});
 		});
 
-	});
+
 
 
 $('#edit').on('pageinit', function(){

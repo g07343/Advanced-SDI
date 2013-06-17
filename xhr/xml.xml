@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-	<game>
-		<name>Luigi's Mansion: Dark Moon</name>
-		<console>3DS</console>
-		<bio>Followup title to the GameCube original, Luigi's Mansion</bio>
-		<favorite>yes</favorite>
-		<cloud>off</cloud>
-	</game>
-		
+	<allGames>
+		<game>
+			<name>Luigi's Mansion: Dark Moon</name>
+			<console>3DS</console>
+			<genre>Adventure</genre>
+			<bio>Followup title to the GameCube original, Luigi's Mansion</bio>
+			<favorite>yes</favorite>
+			<cloud>off</cloud>
+		</game>
+		<game>
+			<name>Bioshock: Infinite</name>
+			<console>PC</console>
+			<genre>Action</genre>
+			<bio>Crazy third installment in the Bioshock trilogy.</bio>
+			<favorite>yes</favorite>
+			<cloud>off</cloud>
+		</game>
+		<game>
+			<name>The Walking Dead</name>
+			<console>PC</console>
+			<genre>Horror</genre>
+			<bio>End of the world horror game that focuses of tough decision-making.</bio>
+			<favorite>no</favorite>
+			<cloud>off</cloud>
+		</game>
+		<game>
+			<name>Borderlands 2</name>
+			<console>PC</console>
+			<genre>Action</genre>
+			<bio>Awesome shooter meets Diablo-style loot fest.</bio>
+			<favorite>yes</favorite>
+			<cloud>off</cloud>
+		</game>
+		<game>
+			<name>Starcraft 2: Heart of the Swarm</name>
+			<console>PC</console>
+			<genre>Strategy</genre>
+			<bio>Zerg expansion to Starcraft 2 RTS.</bio>
+			<favorite>yes</favorite>
+			<cloud>off</cloud>
+		</game>
+	</allGames>
+	
