@@ -263,24 +263,29 @@ $('#settings').on('pageinit', function(){
 			localStorage.clear();
 			$.ajax({
 
-				url: "xhr/json.json",
-				type: "GET",
+				url: "_view/games",
+				//type: "GET",
 				error: function(result){
+					console.log('error');
 					console.log(result);
 				},
 				dataType: "json",
 				success: function(result){
+					console.log('success!');
 					console.log(result);
-					$.each(result, function() {
-						key = id;
-						var id = Math.floor(Math.random()*1904857);
-						localStorage.setItem(id, JSON.stringify(this));
+					$.each(result.rows, function(index, program) {
+						var game = {};
 
-					//console.log(game);
-					// key = id;
-					// var id = Math.floor(Math.random()*1904857);
-					// localStorage.setItem(id, JSON.stringify(game));
-					// 		console.log(localStorage.length);
+						game.name     = program.value.name;
+						game.console  = program.value.console;
+						game.genre    = program.value.genre;
+						game.bio      = program.value.bio;
+						game.favorite = program.value.favorite;
+						game.cloud    = program.value.cloud;
+						 key = id;
+						 var id = Math.floor(Math.random()*1904857);
+						 localStorage.setItem(id, JSON.stringify(game));
+					//console.log(value);
 					});
 				}
 				
