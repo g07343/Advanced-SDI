@@ -76,37 +76,73 @@ $('#add').on('pageinit', function(){
 });
 
 $('#display').on('pageinit', function(){
-	
+	$(gameDiv).listview('refresh');
+
+
 	var createDiv = document.createElement('div');
 				createDiv.setAttribute("id", "items");
+				//$(createDiv).attr("data-role", "collapsible");
 				//createDiv.appendChild(createList);
-				$('#viewGames').append(createDiv);
+				
 				for (var i=0, len=localStorage.length; i<len; i++) {
-					var createLi = document.createElement('li');
-					var createField = document.createElement('fieldset');
-					var createList = document.createElement('ul');
-					createDiv.appendChild(createField);
-					createField.appendChild(createList);
+					var gameDiv = document.createElement('div');
+					$('#display').append(gameDiv);
+					$(gameDiv).attr("data-role", "collapsible");
+
+					//$(createDiv).append(gameDiv);
+					var createTitle = document.createElement('h3');
+					//$(createTitle).text(getTitle(key));
+					$(gameDiv).append(createTitle);
+					//var createLi = document.createElement('li');
+					//$(createDiv).append(createLi);
+					//var createList = document.createElement('ul');
+					//$(createList).attr("data-role", "listview");
+					//createDiv.appendChild(createList);
+					var gameLi = document.createElement('li');
+					$(gameLi).attr('data-role', 'listview');
+					$(gameDiv).append(gameLi);
+					$(gameLi).append(createSubLi);
+					var createLinks1 = document.createElement('li');
+					$(createLinks1).attr("data-theme", "a");
 					var createLinks = document.createElement('li');
-					createList.appendChild(createLi);
+					$(createLinks).attr("data-theme", "a");
+
+					//createList.appendChild(createLi);
 					var key = localStorage.key(i);
 					var value = localStorage.getItem(key);
 					var obj = JSON.parse(value);
-					var createSubList = document.createElement('ul');
-					createLi.appendChild(createSubList);
-					for(var n in obj) {
-						var createSubLi = document.createElement('li');
-						createSubList.appendChild(createSubLi);
-						var optSubText = obj[n][0]+" "+obj[n][1];
-						createSubLi.innerHTML = optSubText; 
-						createSubList.appendChild(createLinks);
+					
+					// var titleText = obj[n][0]+" "+obj[n][1];
+					// console.log(titleText);
 
+					//createLi.appendChild(createSubList);
+					for(var n in obj) {
+						console.log([n][0]);
+						if ([n][0] === 'name'){
+							var titleText = obj[n][1];
+							console.log(titleText);
+							$(createTitle).text(titleText);
+							console.log(titleText);
+						}
+						var createSubLi = document.createElement('li');
+						//$(gameDiv).append(createSubLi);
+						var optSubText = obj[n][0]+" "+obj[n][1];
+						$(createSubLi).text(optSubText);
+						$(gameLi).append(createSubLi);
+
+						$(gameLi).append(createLinks);
+						$(gameLi).append(createLinks1);
+						
 					}
 					createItemLinks(localStorage.key(i), createLinks);
-				}
 
+				}
+				$('#display').find('div[data-role=collapsible]').collapsible();
+				$('#display').find('li[data-role=listview]').listview();				
+			
+			
 			function createItemLinks(key, createLinks){
-				console.log(key);
+				
 				var editor = document.createElement('a');
 				$(editor).attr("href", "#edit");
 				editor.key = key;
@@ -124,10 +160,13 @@ $('#display').on('pageinit', function(){
 				var delTxt = "Delete Game";
 				del.innerHTML = delTxt;
 				//$(del).on('click', deleteGame(key));
-				createLinks.appendChild(del);
+				createLinks1.appendChild(del);
+				del.style.display="block";
 				
 			};
 			
+					
+
 			$('.deleteLink').on('click', function(){
 				
 					var promptUser = confirm("Are you sure you want to delete this game?");
@@ -261,35 +300,35 @@ $('#settings').on('pageinit', function(){
 		if (resetAll) {
 			console.log('All games were deleted!');
 			localStorage.clear();
-			$.ajax({
+				$.ajax({
 
-				url: "_view/games",
-				//type: "GET",
-				error: function(result){
+					url: "_view/games",
+					//type: "GET",
+					error: function(result){
 					console.log('error');
 					console.log(result);
-				},
-				dataType: "json",
-				success: function(result){
+					},
+					dataType: "json",
+					success: function(result){
 					console.log('success!');
 					console.log(result);
 					$.each(result.rows, function(index, program) {
-						var game = {};
+					var game = {};
 
-						game.name     = program.value.name;
-						game.console  = program.value.console;
-						game.genre    = program.value.genre;
-						game.bio      = program.value.bio;
-						game.favorite = program.value.favorite;
-						game.cloud    = program.value.cloud;
-						 key = id;
-						 var id = Math.floor(Math.random()*1904857);
-						 localStorage.setItem(id, JSON.stringify(game));
+					game.name = program.value.name;
+					game.console = program.value.console;
+					game.genre = program.value.genre;
+					game.bio = program.value.bio;
+					game.favorite = program.value.favorite;
+					game.cloud = program.value.cloud;
+					key = id;
+					var id = Math.floor(Math.random()*1904857);
+					localStorage.setItem(id, JSON.stringify(game));
 					//console.log(value);
 					});
-				}
-				
-			});
+					}
+
+});
 		};
 	});
 		$('#restoreXml').on('click', function(){
