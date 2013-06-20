@@ -76,35 +76,60 @@ $('#add').on('pageinit', function(){
 });
 
 $('#display').on('pageinit', function(){
-	
+	$(gameDiv).listview('refresh');
+
+
 	var createDiv = document.createElement('div');
 				createDiv.setAttribute("id", "items");
+				//$(createDiv).attr("data-role", "collapsible");
 				//createDiv.appendChild(createList);
-				$('#viewGames').append(createDiv);
+				
 				for (var i=0, len=localStorage.length; i<len; i++) {
-					var createLi = document.createElement('li');
-					var createField = document.createElement('fieldset');
-					var createList = document.createElement('ul');
-					createDiv.appendChild(createField);
-					createField.appendChild(createList);
-					var createLinks = document.createElement('li');
-					createList.appendChild(createLi);
+					var gameDiv = document.createElement('div');
+					$('#display').append(gameDiv);
+					$(gameDiv).attr("data-role", "collapsible");
+
+					//$(createDiv).append(gameDiv);
+					var createTitle = document.createElement('h3');
+					//$(createTitle).text(getTitle(key));
+					$(gameDiv).append(createTitle);
+					//var createLi = document.createElement('li');
+					//$(createDiv).append(createLi);
+					//var createList = document.createElement('ul');
+					//$(createList).attr("data-role", "listview");
+					//createDiv.appendChild(createList);
+					
+					var createLinks = document.createElement('p');
+					//createList.appendChild(createLi);
 					var key = localStorage.key(i);
 					var value = localStorage.getItem(key);
 					var obj = JSON.parse(value);
-					var createSubList = document.createElement('ul');
-					createLi.appendChild(createSubList);
+					
+					// var titleText = obj[n][0]+" "+obj[n][1];
+					// console.log(titleText);
+
+					//createLi.appendChild(createSubList);
 					for(var n in obj) {
-						var createSubLi = document.createElement('li');
-						createSubList.appendChild(createSubLi);
+						console.log([n][0]);
+						if ([n][0] === 'name'){
+							var titleText = obj[n][1];
+							console.log(titleText);
+							$(createTitle).text(titleText);
+							console.log(titleText);
+						}
+						var createSubLi = document.createElement('p');
+						$(gameDiv).append(createSubLi);
 						var optSubText = obj[n][0]+" "+obj[n][1];
-						createSubLi.innerHTML = optSubText; 
-						createSubList.appendChild(createLinks);
+						$(createSubLi).text(optSubText);
+						$(gameDiv).append(createLinks);
 
 					}
 					createItemLinks(localStorage.key(i), createLinks);
-				}
 
+				}
+				$('#display').find('div[data-role=collapsible]').collapsible();				
+			
+			
 			function createItemLinks(key, createLinks){
 				console.log(key);
 				var editor = document.createElement('a');
@@ -128,6 +153,8 @@ $('#display').on('pageinit', function(){
 				
 			};
 			
+					
+
 			$('.deleteLink').on('click', function(){
 				
 					var promptUser = confirm("Are you sure you want to delete this game?");
