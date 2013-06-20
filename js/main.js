@@ -98,8 +98,15 @@ $('#display').on('pageinit', function(){
 					//var createList = document.createElement('ul');
 					//$(createList).attr("data-role", "listview");
 					//createDiv.appendChild(createList);
-					
-					var createLinks = document.createElement('p');
+					var gameLi = document.createElement('li');
+					$(gameLi).attr('data-role', 'listview');
+					$(gameDiv).append(gameLi);
+					$(gameLi).append(createSubLi);
+					var createLinks1 = document.createElement('li');
+					$(createLinks1).attr("data-theme", "a");
+					var createLinks = document.createElement('li');
+					$(createLinks).attr("data-theme", "a");
+
 					//createList.appendChild(createLi);
 					var key = localStorage.key(i);
 					var value = localStorage.getItem(key);
@@ -117,21 +124,25 @@ $('#display').on('pageinit', function(){
 							$(createTitle).text(titleText);
 							console.log(titleText);
 						}
-						var createSubLi = document.createElement('p');
-						$(gameDiv).append(createSubLi);
+						var createSubLi = document.createElement('li');
+						//$(gameDiv).append(createSubLi);
 						var optSubText = obj[n][0]+" "+obj[n][1];
 						$(createSubLi).text(optSubText);
-						$(gameDiv).append(createLinks);
+						$(gameLi).append(createSubLi);
 
+						$(gameLi).append(createLinks);
+						$(gameLi).append(createLinks1);
+						
 					}
 					createItemLinks(localStorage.key(i), createLinks);
 
 				}
-				$('#display').find('div[data-role=collapsible]').collapsible();				
+				$('#display').find('div[data-role=collapsible]').collapsible();
+				$('#display').find('li[data-role=listview]').listview();				
 			
 			
 			function createItemLinks(key, createLinks){
-				console.log(key);
+				
 				var editor = document.createElement('a');
 				$(editor).attr("href", "#edit");
 				editor.key = key;
@@ -149,7 +160,8 @@ $('#display').on('pageinit', function(){
 				var delTxt = "Delete Game";
 				del.innerHTML = delTxt;
 				//$(del).on('click', deleteGame(key));
-				createLinks.appendChild(del);
+				createLinks1.appendChild(del);
+				del.style.display="block";
 				
 			};
 			
