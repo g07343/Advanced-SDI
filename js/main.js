@@ -149,7 +149,7 @@ $('#display').on('pageinit', function(){
 				$(editor).attr("data-key", key);
 				$(editor).attr("class", "editLink");
 				var txt = "Edit Game";
-				editor.innerHTML = txt;
+				$(editor).text(txt);
 				createLinks.appendChild(editor);
 				editor.style.display="block";
 				
@@ -158,7 +158,7 @@ $('#display').on('pageinit', function(){
 				del.key = key;
 				$(del).attr("class", "deleteLink");
 				var delTxt = "Delete Game";
-				del.innerHTML = delTxt;
+				$(del).text(delTxt);
 				//$(del).on('click', deleteGame(key));
 				createLinks1.appendChild(del);
 				del.style.display="block";
@@ -321,6 +321,7 @@ $('#settings').on('pageinit', function(){
 					// localStorage.setItem(id, JSON.stringify(game));
 					// 		console.log(localStorage.length);
 					});
+					location.reload(true);
 				}
 				
 			});
@@ -355,15 +356,9 @@ $('#settings').on('pageinit', function(){
 				}
 
 			});
-					
-										
 				
-  					 
-
-
-				
-			});
 		});
+});
 
 
 
@@ -384,7 +379,7 @@ $('#edit').on('pageinit', function(){
 
 
 ///adding outside listeners, variables, etc down below...
-//$('saveGame').on('click', addGame());
+
 var cloudVal;
 var favVal;
-//var edit = $('.edit').key;
+
