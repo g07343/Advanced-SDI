@@ -14,22 +14,27 @@ $('#add').on('pageinit', function(){
 	
 	
 		$("#saveGame").on('click', function(key){
-			getFavorite();
-			getCloud();
-			if(!key){
-				var id = Math.floor(Math.random()*100065);
-				console.log(id);
-			}else{
-				id = Math.floor(Math.random()*100065);
-				console.log(key);
-			getFavorite();
-			getCloud();
+			var form = $("#addGame");
+			validateGame(form);
+		});
+
+		$('#clearStorage').on("click", function(){
+			localStorage.clear();
+			window.location.reload();
+		});
+});
+
+function storeGame(form) {
+	id = Math.floor(Math.random()*100065);
+				//console.log(key);
+			getFavorite(form);
+			getCloud(form);
 
 			var game            = {};
-				game.name       =["Name: ",    $("#name").val()];
-				game.console    =["Console: ",    $("#console").val()];
-				game.genre      =["Genre: ",     $("#genre").val()];
-				game.bio        =["Bio: ",    $("#bio").val()];
+				game.name       =["Name: ",    $(form).find("#name").val()];
+				game.console    =["Console: ",    $(form).find("#console").val()];
+				game.genre      =["Genre: ",     $(form).find("#genre").val()];
+				game.bio        =["Bio: ",    $(form).find("#bio").val()];
 				game.favorite   =["Favorite? ",   favVal];
 				game.cloud      =["Cloud: ",   cloudVal];
 				
@@ -43,9 +48,9 @@ $('#add').on('pageinit', function(){
 					//$('#addGame').reset();
 					location.reload(true);
 					
-				}
-				function getFavorite(){
-					if ($('#favorite').is(':checked')){
+				
+				function getFavorite(form){
+					if ($(form).find('#favorite').is(':checked')){
 						favVal = "yes";
 						
 					} else {
@@ -55,9 +60,9 @@ $('#add').on('pageinit', function(){
 					console.log("favVal is " + favVal);
 					return favVal;
 				};
-				function getCloud(){
+				function getCloud(form){
 					console.log("Cloud is" + $('#cloud').val());
-					if($('#cloud').is(':checked')){
+					if($(form).find('#cloud').is(':checked')){
 						cloudVal = "on";
 
 					} else {
@@ -67,13 +72,8 @@ $('#add').on('pageinit', function(){
 				}
 
 
-		});
+};
 
-		$('#clearStorage').on("click", function(){
-			localStorage.clear();
-			window.location.reload();
-		});
-});
 
 $('#display').on('pageinit', function(){
 	$(gameDiv).listview('refresh');
@@ -117,13 +117,13 @@ $('#display').on('pageinit', function(){
 
 					//createLi.appendChild(createSubList);
 					for(var n in obj) {
-						console.log([n][0]);
+						//console.log([n][0]);
 						if ([n][0] === 'name'){
 							var titleText = obj[n][1];
 							//console.log(titleText);
 							$(createTitle).text(titleText);
 							//console.log(titleText);
-						}
+						} else {
 						var createSubLi = document.createElement('li');
 						//$(gameDiv).append(createSubLi);
 						var optSubText = obj[n][0]+" "+obj[n][1];
@@ -132,7 +132,7 @@ $('#display').on('pageinit', function(){
 
 						$(gameLi).append(createLinks);
 						$(gameLi).append(createLinks1);
-						
+						}
 					}
 					createItemLinks(localStorage.key(i), createLinks);
 
@@ -225,46 +225,15 @@ $('#display').on('pageinit', function(){
 
 				}
 				$('#submitEditedGame').on('click', function(){
+				var form = $("#editForm");
+				validateEdited(form, key);
 				console.log("Edited games key is " + key);
-				getFavorite();
-				getCloud();
-				console.log("The edited game's key is: " + key);
-				if(!key){
-					var id = Math.floor(Math.random()*100065);
-					console.log(id);
-				}else{
-					id = key
-					
-				getFavorite();
-				getCloud();
-
-				var game            = {};
-					game.name       =["Name: ",    $("#editName").val()];
-					game.console    =["Console: ",    $("#editConsole").val()];
-					game.genre      =["Genre: ",     $("#editGenre").val()];
-					game.bio        =["Bio: ",    $("#editBio").val()];
-					game.favorite   =["Favorite? ",   favVal];
-					game.cloud      =["Cloud: ",   cloudVal];
-				
-					key = id;
-					
-					
-					localStorage.setItem(id, JSON.stringify(game));
-
-					alert("Game Saved!");
-					$('#reset').click();
-					$("#editHome").click();
-					location.reload(true);
-				};
 
 			});
 
 
 
 			};
-
-			
-			
 
 			function getFavorite(){
 					if ($('#editFavorite').is(':checked')){
@@ -291,8 +260,101 @@ $('#display').on('pageinit', function(){
 
 });
 
+function validateGame(form) {
+				var errors = 0;
+				console.log("validate form is run!");
+				//console.log($(form).find("#console").val());
+				if ($(form).find("#name").val().length < 3) {
+					errors ++;
+					console.log("NAME ERROR! " + errors);
+					
+			 	}	
+			 	if ($(form).find("#console").val() === "") {
+					errors ++;
+					console.log("CONSOLE ERROR! " + errors);
+					
+				}			
+				if ($(form).find("#genre").val() === "") {
+					errors ++;
+					console.log("GENRE ERROR! " + errors);
+					
+				} 
+				if (errors >= 1) {
+					console.log("Form generated " + errors + " errors.");
+				} else {
+					console.log("Form passes validation");
+					storeGame(form);
+				};								
+};
+function validateEdited(form, key) {
+				var errors = 0;
+				if ($(form).find("#editName").val().length < 3) {
+					errors ++;
+					console.log("NAME ERROR!");
 
+				};
+			 	if ($(form).find("#editConsole").val() === "") {
+					errors ++;
+					console.log("CONSOLE ERROR!");
+				};
+				if ($(form).find("#editGenre").val() === "") {
+					errors ++;
+					console.log("GENRE ERROR!");
+				}; 
+				if (errors >= 1) {
+					console.log("Form generated " + errors + " errors.");
+				} else {
+					console.log("Form passes validation");
+					submitEdit(form, key);
+				};
 
+};
+function submitEdit(form, key){
+		console.log("addGame is run");
+		id = key;
+		getFavorite();
+		getCloud();
+
+		var game = {};
+			game.name       =["Name: ",    $(form).find("#editName").val()];
+			game.console    =["Console: ",    $(form).find("#editConsole").val()];
+			game.genre      =["Genre: ",     $(form).find("#editGenre").val()];
+			game.bio        =["Bio: ",    $(form).find("#editBio").val()];
+			game.favorite   =["Favorite? ",   favVal];
+			game.cloud      =["Cloud: ",   cloudVal];
+				
+			key = id;
+					
+					
+			localStorage.setItem(id, JSON.stringify(game));
+
+			alert("Game Saved!");
+			$('#reset').click();
+			$("#editHome").click();
+			location.reload(true);
+
+			function getFavorite(){
+					if ($('#editFavorite').is(':checked')){
+						favVal = "yes";
+						
+					} else {
+						favVal = "no";
+						
+					}
+					console.log("favVal is " + favVal);
+					return favVal;
+				};
+				function getCloud(){
+					//console.log("Cloud is" + $('#cloud').val());
+					if($('#editCloud').is(':checked')){
+						cloudVal = "on";
+
+					} else {
+						cloudVal = "off";
+					}
+					return cloudVal;
+				}
+	};
 $('#settings').on('pageinit', function(){
 	
 	$('#restoreJson').on('click', function(){
@@ -300,7 +362,7 @@ $('#settings').on('pageinit', function(){
 		if (resetAll) {
 			console.log('All games were deleted!');
 			localStorage.clear();
-				$.ajax({
+			$.ajax({
 
 					url: "_view/games",
 					//type: "GET",
@@ -362,7 +424,7 @@ $('#settings').on('pageinit', function(){
 				}
 
 			});
-	
+				
 		});
 });
 
@@ -385,7 +447,7 @@ $('#edit').on('pageinit', function(){
 
 
 ///adding outside listeners, variables, etc down below...
-//$('saveGame').on('click', addGame());
+
 var cloudVal;
 var favVal;
-//var edit = $('.edit').key;
+
