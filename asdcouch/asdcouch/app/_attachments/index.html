@@ -205,10 +205,11 @@ index.html file
 				<header data-role="header"><h1>Edit Game</h1></header>
 				<div data-role="content">
 					<form action="" method="post" id="editForm">
+						<h4>All field denoted with a * are required</h4>
 							<!-- All form inputs live below! -->
 							<!-- Name input -->
 							<div data-role="fieldcontain">
-								<label for="editName">Game Title</label>
+								<label for="editName">Game Title*</label>
 								<input type="text" placeholder="Game Title/Name" name="editName" id="editName" class="required"/>
 							</div>
 							<!-- Game Console input -->
@@ -216,7 +217,7 @@ index.html file
 								<fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
 							    	<label for="editConsole">Console/Device:</label>
 							            <select class="required" id="editConsole" name="console" data-native-menu="false">
-							                <option data-placeholder="true" id="consolePlaceholder"value>What console is the game on?</option>
+							                <option data-placeholder="true" id="consolePlaceholder"value>What console is the game on?*</option>
 							                <option value="XBOX 360">Xbox 360</option>
 							                <option value="PS3">PS3</option>
 							                <option value="3DS">Nintendo 3DS</option>
@@ -230,7 +231,7 @@ index.html file
 						        <fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
 							    	<label for="editGenre">Genre:</label>
 							            <select class="required" id="editGenre" name="editGenre" data-native-menu="false">
-							                <option data-placeholder="true" id="genrePlaceholder" value>What genre is the game?</option>
+							                <option data-placeholder="true" id="genrePlaceholder" value>What genre is the game?*</option>
 							                <option value="Action">Action</option>
 							                <option value="Adventure">Adventure</option>
 							                <option value="Strategy">Strategy</option>
@@ -283,6 +284,7 @@ index.html file
 		</div>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 		<script src="jquery.couch.js"></script>
 		<script type="text/javascript" src="main.js"></script>
 		<script type="text/javascript" src="json.js"></script>
