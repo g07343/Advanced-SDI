@@ -120,9 +120,9 @@ $('#display').on('pageinit', function(){
 						console.log([n][0]);
 						if ([n][0] === 'name'){
 							var titleText = obj[n][1];
-							console.log(titleText);
+							//console.log(titleText);
 							$(createTitle).text(titleText);
-							console.log(titleText);
+							//console.log(titleText);
 						}
 						var createSubLi = document.createElement('li');
 						//$(gameDiv).append(createSubLi);

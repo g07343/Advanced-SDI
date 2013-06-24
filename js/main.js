@@ -117,13 +117,13 @@ $('#display').on('pageinit', function(){
 
 					//createLi.appendChild(createSubList);
 					for(var n in obj) {
-						console.log([n][0]);
+						//console.log([n][0]);
 						if ([n][0] === 'name'){
 							var titleText = obj[n][1];
-							console.log(titleText);
+							//console.log(titleText);
 							$(createTitle).text(titleText);
-							console.log(titleText);
-						}
+							//console.log(titleText);
+						} else {
 						var createSubLi = document.createElement('li');
 						//$(gameDiv).append(createSubLi);
 						var optSubText = obj[n][0]+" "+obj[n][1];
@@ -132,7 +132,7 @@ $('#display').on('pageinit', function(){
 
 						$(gameLi).append(createLinks);
 						$(gameLi).append(createLinks1);
-						
+						}
 					}
 					createItemLinks(localStorage.key(i), createLinks);
 
