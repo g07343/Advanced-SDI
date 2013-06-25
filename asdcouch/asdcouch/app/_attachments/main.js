@@ -13,9 +13,10 @@ $('#add').on('pageinit', function(){
 	
 	
 	
-		$("#saveGame").on('click', function(key){
+		$("#saveGame").on('click', function(e){
 			var form = $("#addGame");
 			validateGame(form);
+			e.preventDefault();
 		});
 
 		$('#clearStorage').on("click", function(){
@@ -25,6 +26,7 @@ $('#add').on('pageinit', function(){
 });
 
 function storeGame(form) {
+	console.log("Store game is run...");
 	id = Math.floor(Math.random()*100065);
 				//console.log(key);
 			getFavorite(form);
@@ -180,7 +182,7 @@ $('#display').on('pageinit', function(){
 							}
 				});
 
-			$('.editLink').on('click', function(){	
+			$('.editLink').on('click', function(e){	
 				console.log("The game to be edited's key is: " + this.key);
 				editGame(this.key);
 
@@ -224,10 +226,11 @@ $('#display').on('pageinit', function(){
 					};
 
 				}
-				$('#submitEditedGame').on('click', function(){
+				$('#submitEditedGame').on('click', function(e){
 				var form = $("#editForm");
 				validateEdited(form, key);
 				console.log("Edited games key is " + key);
+				e.preventDefault();
 
 			});
 
@@ -262,51 +265,89 @@ $('#display').on('pageinit', function(){
 
 function validateGame(form) {
 				var errors = 0;
+				var errorMsgs = [];
+				$("#errorMsgs").text('');
 				console.log("validate form is run!");
 				//console.log($(form).find("#console").val());
 				if ($(form).find("#name").val().length < 3) {
 					errors ++;
 					console.log("NAME ERROR! " + errors);
+					var nameError = "Please input a valid game Name";
+					errorMsgs.push(nameError);
 					
 			 	}	
 			 	if ($(form).find("#console").val() === "") {
 					errors ++;
 					console.log("CONSOLE ERROR! " + errors);
-					
+					var consoleError = "Please input a valid console";
+					errorMsgs.push(consoleError);
 				}			
 				if ($(form).find("#genre").val() === "") {
 					errors ++;
 					console.log("GENRE ERROR! " + errors);
+					var genreError = "Please input a valid genre";
+					errorMsgs.push(genreError);
 					
 				} 
 				if (errors >= 1) {
 					console.log("Form generated " + errors + " errors.");
+					console.log(errorMsgs.length);
+					for (var i=0, j=errorMsgs.length; i < j; i++) {
+						var errorLi = document.createElement('li');
+						$(errorLi).attr("class", "errorMessages");
+						var errorUL = $('#errorMsgs');
+						$(errorLi).text(errorMsgs[i]);
+						errorUL.append(errorLi);
+						//location.reload(true);
+					}
 				} else {
 					console.log("Form passes validation");
 					storeGame(form);
-				};								
+				};	
+											
 };
 function validateEdited(form, key) {
 				var errors = 0;
+				var errorMsgs = [];
+				var key = key;
+				$("#editError").text('');
+				console.log(" edit validate form is run!");
+				//console.log($(form).find("#console").val());
 				if ($(form).find("#editName").val().length < 3) {
 					errors ++;
-					console.log("NAME ERROR!");
-
-				};
+					console.log("NAME ERROR! " + errors);
+					var nameError = "Please input a valid game Name";
+					errorMsgs.push(nameError);
+					
+			 	}	
 			 	if ($(form).find("#editConsole").val() === "") {
 					errors ++;
-					console.log("CONSOLE ERROR!");
-				};
+					console.log("CONSOLE ERROR! " + errors);
+					var consoleError = "Please input a valid console";
+					errorMsgs.push(consoleError);
+				}			
 				if ($(form).find("#editGenre").val() === "") {
 					errors ++;
-					console.log("GENRE ERROR!");
-				}; 
+					console.log("GENRE ERROR! " + errors);
+					var genreError = "Please input a valid genre";
+					errorMsgs.push(genreError);
+					
+				} 
 				if (errors >= 1) {
 					console.log("Form generated " + errors + " errors.");
+					console.log(errorMsgs.length);
+					for (var i=0, j=errorMsgs.length; i < j; i++) {
+						var errorLi = document.createElement('li');
+						$(errorLi).attr("class", "errorMessages");
+						var errorUL = $('#editError');
+						$(errorLi).text(errorMsgs[i]);
+						errorUL.append(errorLi);
+						//location.reload(true);
+					}
 				} else {
-					console.log("Form passes validation");
+					console.log("Form passes edit validation");
 					submitEdit(form, key);
-				};
+				};	
 
 };
 function submitEdit(form, key){
@@ -331,6 +372,7 @@ function submitEdit(form, key){
 			alert("Game Saved!");
 			$('#reset').click();
 			$("#editHome").click();
+			$('#resetEdit').click();
 			location.reload(true);
 
 			function getFavorite(){
@@ -392,7 +434,7 @@ $('#settings').on('pageinit', function(){
 
 					}
 
-});
+			});
 		};
 	});
 		$('#restoreXml').on('click', function(){
@@ -436,7 +478,7 @@ $('#edit').on('pageinit', function(){
 
 	
 	$('#submitEditedGame').on('click', function(){
-		$('#resetEdit').click();
+		//$('#resetEdit').click();
 
 		console.log('edit form reset!');
 	});
