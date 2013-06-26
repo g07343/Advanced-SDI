@@ -100,7 +100,7 @@ $(document).on('pageshow', '#display', function(){
 		$.couch.db('gametracker').view('app/filter', {
 			success: function (data) {
 				if (data.rows.length === 0) {
-					alert("You haven't saved any games yet!  Default games will be created!")
+					alert("You haven't saved any games yet!  Default games will be created! NOTE: These games cannot be edited!")
 					console.log('success!');
 					$.couch.db("gametracker").view("app/games", {
 						success: function(data){
@@ -112,11 +112,6 @@ $(document).on('pageshow', '#display', function(){
 							var gameDiv = document.createElement('div');
 							$('#display').append(gameDiv);
 							$(gameDiv).attr("data-role", "collapsible");
-							//var id = Math.floor(Math.random()*1904857); 
-							console.log(program);
-							//var id = program.value.name.value;
-							//console.log(id);
-							//$(createDiv).append(gameDiv);
 							var createTitle = document.createElement('h3');
 							//$(createTitle).text(getTitle(key));
 							$(gameDiv).append(createTitle);
@@ -130,10 +125,10 @@ $(document).on('pageshow', '#display', function(){
 							$(gameDiv).append(gameLi);
 							//$(gameLi).append(createSubLi);
 							
-							var createLinks = document.createElement('li');
-							$(createLinks).attr("data-theme", "a");
-							var createLinks1 = document.createElement('li');
-							$(createLinks1).attr("data-theme", "a");
+							// var createLinks = document.createElement('li');
+							// $(createLinks).attr("data-theme", "a");
+							// var createLinks1 = document.createElement('li');
+							// $(createLinks1).attr("data-theme", "a");
 
 							var obj = program.value;
 							var id = getKey();
@@ -161,8 +156,8 @@ $(document).on('pageshow', '#display', function(){
 									$(createSubLi).text(optSubText);
 									$(gameLi).append(createSubLi);
 
-									$(gameLi).append(createLinks);
-									$(gameLi).append(createLinks1);
+									//$(gameLi).append(createLinks);
+									//$(gameLi).append(createLinks1);
 								
 								var titleText = program.value.name[1];
 								//console.log(titleText);
@@ -170,7 +165,7 @@ $(document).on('pageshow', '#display', function(){
 								
 							});
 		
-							createItemLinks(id, createLinks, createLinks1);
+							//createItemLinks(id, createLinks, createLinks1);
 						});
 						$('#display').find('div[data-role=collapsible]').collapsible();
 						$('#display').find('li[data-role=listview]').listview();
@@ -221,6 +216,7 @@ $(document).on('pageshow', '#display', function(){
 					var rev = program.value.rev;
 					//console.log(rev);
 					var gameDiv = document.createElement('div');
+					$(gameDiv).attr('id', 'gameDiv');
 					$('#display').append(gameDiv);
 					$(gameDiv).attr("data-role", "collapsible");
 					var createTitle = document.createElement('h3');
@@ -249,13 +245,14 @@ $(document).on('pageshow', '#display', function(){
 						$(createTitle).text(titleText);
 								
 					});
-					createItemLinks(id, createLinks, createLinks1);
+					createItemLinks(id, rev, createLinks, createLinks1);
 				});
 				$('#display').find('div[data-role=collapsible]').collapsible();
 				$('#display').find('li[data-role=listview]').listview();
 			
-				function createItemLinks(key, createLinks, createLinks1){
+				function createItemLinks(key, rev, createLinks, createLinks1){
 							//console.log(key);
+							//console.log(rev);
 							var editor = document.createElement('a');
 							$(editor).attr("href", "#edit");
 							editor.key = key;
@@ -270,26 +267,71 @@ $(document).on('pageshow', '#display', function(){
 							var del = document.createElement('a');
 							$(del).attr("href", "#display");
 							del.key = key;
+							del.rev = rev;
+							//console.log(rev);
 							$(del).attr("class", "deleteLink");
 							var delTxt = "Delete Game";
 							$(del).text(delTxt);
 							//$(del).on('click', deleteGame(key));
 							createLinks1.appendChild(del);
 							del.style.display="block";
+						$('.deleteLink').on('click', function(){
+							var promptUser = confirm("Are you sure you want to delete this game?");
+							if (promptUser) {
+							var key = this.key;
+							var rev = this.rev;
+							var destroy = {
+								_id: key,
+								_rev: rev
+							};
+
+							$.couch.db('gametracker').removeDoc(destroy, {
+								success: function(){
+									console.log('did it work??');
+								}
+							});
+							};
+							$("#gameDiv").text("");
+							$('#editHome').click();
+							alert("Game Deleted!");
+							window.location.reload();
+						});
 				};
 
-				$('.deleteLink').on('click', function(){
-				console.log("delete clicked!");
-					var promptUser = confirm("Are you sure you want to delete this game?");
-						if(promptUser){
-							
-							console.log(this.rev);
-							alert("Game deleted!");
-							window.location.reload();
-							}else{
-								alert("Game saved.");
-							}
-				});
+				// $('.deleteLink').on('click', function(){
+				// console.log("delete clicked!");
+				// 	var promptUser = confirm("Are you sure you want to delete this game?");
+				// 		//console.log(this.key);
+				// 		if(promptUser){
+				// 			var id = this.key;
+				// 			// var destroy = {};
+				// 			// destroy.key = this.key;
+				// 			// destroy.rev = rev;
+				// 			$.couch.db('gametracker').openDoc(id, {
+				// 				success: function (data) {
+				// 					var id = data._id;
+				// 					var rev = data._rev;
+
+				// 					var destroy = {
+				// 						_id: id,
+				// 						_rev: rev
+				// 					};
+
+				// 					$.couch.db().removeDoc(destroy, {
+				// 						success: function(data){
+				// 							console.log("Did it work??")
+				// 						}
+				// 					});
+									
+				// 					//console.log("game deleted successfully!");
+				// 				}
+				// 			});
+				// 			alert("Game deleted!");
+				// 			window.location.reload();
+				// 			}else{
+				// 				alert("Game saved.");
+				// 			}
+				// });
 				
 				$(".editLink").on('click', function(){
 					//console.log(this.key);
