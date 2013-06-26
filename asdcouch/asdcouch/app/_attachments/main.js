@@ -290,11 +290,15 @@ $(document).on('pageshow', '#display', function(){
 									console.log('did it work??');
 								}
 							});
-							};
 							$("#gameDiv").text("");
 							$('#editHome').click();
 							alert("Game Deleted!");
 							window.location.reload();
+							};
+							alert("Game Saved!");
+							$('#editHome').click();
+							window.location.reload();
+							
 						});
 				};
 
