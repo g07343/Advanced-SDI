@@ -1,0 +1,101 @@
+<!-- Matthew Lewis
+ASD Term: 1306
+Dynamic Edit item html page -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Edit your Game</title>
+	</head>
+	<body>
+		<div  data-role="page" id="editDefault">
+			<section id="editSection">
+				<header data-role="header"><h1>Edit your Game</h1></header>
+				<div data-role="content">
+					<form action="" method="post" id="editdefaultGames">
+						<ul id="errorDefault"></ul>
+							<!-- All form inputs live below! -->
+							<!-- Name input -->
+							<div data-role="fieldcontain">
+								<label for="name">Game Title</label>
+								<input type="text" placeholder="Game Title/Name" name="name" id="nameDefault" class="required"/>
+							</div>
+							<!-- Game Console input -->
+							<div data-role="fieldcontain">
+								<fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
+							    	<label for="console">Console/Device:</label>
+							            <select class="required" id="consoleDefault" name="console" data-native-menu="false">
+							                <option data-placeholder="true" id="consolePlaceholderDefault"value>What console is the game on?</option>
+							                <option value="XBOX 360">Xbox 360</option>
+							                <option value="PS3">PS3</option>
+							                <option value="3DS">Nintendo 3DS</option>
+							                <option value="VITA">Playstation Vita</option>
+							                <option value="PC">PC</option>
+							            </select>
+						        </fieldset>
+					   	 	</div>
+					   	 	<!-- Genre input -->
+					        <div data-role="fieldcontain">
+						        <fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
+							    	<label for="genre">Genre:</label>
+							            <select class="required" id="genreDefault" name="genre" data-native-menu="false">
+							                <option data-placeholder="true" id="genrePlaceholderDefault" value>What genre is the game?</option>
+							                <option value="Action">Action</option>
+							                <option value="Adventure">Adventure</option>
+							                <option value="Strategy">Strategy</option>
+							                <option value="RPG">Role Playing Game</option>
+							                <option value="Racing">Racing</option>
+							                <option value="Horror">Horror</option>
+							                <option value="Fighting">Fighting</option>
+							                <option value="Other">Other</option>
+							            </select>
+						        </fieldset>
+					    	</div>
+					    	<!-- description input -->
+					        <div data-role="fieldcontain">
+						        <label for="bio">Brief description of game:</label>
+								<textarea name="bio" id="bioDefault" placeholder="Write a brief description of the game"></textarea>
+							</div>
+							<!-- favorite input -->
+							<div data-role="fieldcontain">
+							 	<fieldset data-role="controlgroup">
+									<legend>Is this game a favorite?</legend>
+									<input type="checkbox" name="favoriteDefault" id="favoriteDefault" />
+									<label for="favoriteDefault">Favorite!</label>
+							    </fieldset>
+							</div>
+							<!-- cloud input -->
+							<div data-role="fieldcontain">
+							 	<fieldset data-role="controlgroup">
+									<legend>Save game to cloud?</legend>
+									<input type="checkbox" name="cloudDefault" id="cloudDefault" />
+									<label for="cloudDefault">Enable?</label>
+							    </fieldset>
+							</div>
+							<!-- submit and cancel buttons -->
+							<div data-role="fieldcontain">
+								<input type="submit" value="Add Game!" data-theme="b" id="saveGameDefault" data-inline="true"/>
+								<a id="cancelDefault" href="#home" data-inline="true">Cancel</a>
+								<a id="clearStorageDefault">Clear!</a>
+								<a id="reloadDefault" href="#"></a>
+							</div>
+							<div id="hidden">
+								<input type="reset" value="Reset" data-theme="a" style="display: none" id="resetDefault"/>
+							</div>
+					</form>
+				</div>
+				<footer>
+					<div data-role="footer" data-position="fixed" data-id="static">
+						<div data-role="navbar">
+							<ul>
+								<li><a href="#home">Home</a></li>
+								<li><a href="#add" id="addLink">Add Game</a></li>
+								<li><a href="#settings">Settings</a></li>
+							</ul>
+						</div>
+					</div>
+				</footer>
+			</section>	
+		</div>
+	</body>
+</html>
