@@ -294,11 +294,12 @@ $(document).on('pageshow', '#display', function () {
                     $('#editHome').click();
                     alert("Game Deleted!");
                     window.location.reload();
+                
+                } else {
+                    alert("Game Saved!");
+                    $('#editHome').click();
+                    window.location.reload();
                 };
-                alert("Game Saved!");
-                $('#editHome').click();
-                window.location.reload();
-
             });
         };
 
@@ -705,14 +706,19 @@ function submitEdit(form, key, rev) {
     getCloud();
 
     var game = {};
-    _id = key;
-    _rev = rev;
+    // _id = key;
+    // _rev = rev;
+    console.log(key);
+    console.log(rev);
     game.name = ["Name: ", $(form).find("#editName").val()];
     game.console = ["Console: ", $(form).find("#editConsole").val()];
     game.genre = ["Genre: ", $(form).find("#editGenre").val()];
     game.bio = ["Bio: ", $(form).find("#editBio").val()];
     game.favorite = ["Favorite? ", favVal];
     game.cloud = ["Cloud: ", cloudVal];
+    game._id = key;
+    game._rev = rev;
+
 
     $.couch.db('gametracker').saveDoc(game, {
         success: function (data) {
