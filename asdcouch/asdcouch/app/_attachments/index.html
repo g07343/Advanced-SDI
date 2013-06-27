@@ -63,19 +63,20 @@ index.html file
 				<header data-role="header"><h1>Add a New Game</h1></header>
 				<div data-role="content">
 					<form action="" method="post" id="addGame">
+						<h4>All field denoted with a * are required</h4>
 						<ul id="errorMsgs"></ul>
 							<!-- All form inputs live below! -->
 							<!-- Name input -->
 							<div data-role="fieldcontain">
-								<label for="name">Game Title</label>
-								<input type="text" placeholder="Game Title/Name" name="name" id="name" class="required"/>
+								<label for="name">Game Title*</label>
+								<input type="text" placeholder="Game Title/Name (min. of 3 chars.)" name="name" id="name" class="required"/>
 							</div>
 							<!-- Game Console input -->
 							<div data-role="fieldcontain">
 								<fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
 							    	<label for="console">Console/Device:</label>
 							            <select class="required" id="console" name="console" data-native-menu="false">
-							                <option data-placeholder="true" id="consolePlaceholder"value>What console is the game on?</option>
+							                <option data-placeholder="true" id="consolePlaceholder"value>What console is the game on?*</option>
 							                <option value="XBOX 360">Xbox 360</option>
 							                <option value="PS3">PS3</option>
 							                <option value="3DS">Nintendo 3DS</option>
@@ -89,7 +90,7 @@ index.html file
 						        <fieldset data-role="controlgroup" data-type="horizontal" style="display: inline">
 							    	<label for="genre">Genre:</label>
 							            <select class="required" id="genre" name="genre" data-native-menu="false">
-							                <option data-placeholder="true" id="genrePlaceholder" value>What genre is the game?</option>
+							                <option data-placeholder="true" id="genrePlaceholder" value>What genre is the game?*</option>
 							                <option value="Action">Action</option>
 							                <option value="Adventure">Adventure</option>
 							                <option value="Strategy">Strategy</option>
@@ -212,7 +213,7 @@ index.html file
 							<!-- Name input -->
 							<div data-role="fieldcontain">
 								<label for="editName">Game Title*</label>
-								<input type="text" placeholder="Game Title/Name" name="editName" id="editName" class="required"/>
+								<input type="text" placeholder="Game Title/Name (min. 3 letters)" name="editName" id="editName" class="required"/>
 							</div>
 							<!-- Game Console input -->
 							<div data-role="fieldcontain">
